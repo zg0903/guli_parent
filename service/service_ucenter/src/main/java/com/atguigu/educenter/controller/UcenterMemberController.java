@@ -26,7 +26,7 @@ public class UcenterMemberController {
     private UcenterMemberService memberService;
 
     //    登陆
-    @GetMapping("login")
+    @PostMapping("login")
     public R loginUser(@RequestBody UcenterMember member) {
 //        返回token值 使用jwt生成
         String token = memberService.lgoin(member);

@@ -71,9 +71,10 @@ public class UcenterMemberServiceImpl extends ServiceImpl<UcenterMemberMapper, U
             throw new GuliException(20001, "注册失败 属性为空");
         }
         String redisCode = redisTemplate.opsForValue().get(mobile);
-        if (!code.equals(redisCode)) {
-            throw new GuliException(20001, "验证码错误");
-        }
+//        注册验证码 暂时取消
+//        if (!code.equals(redisCode)) {
+//            throw new GuliException(20001, "验证码错误");
+//        }
         QueryWrapper<UcenterMember> wrapper = new QueryWrapper<>();
         wrapper.eq("mobile", mobile);
         Integer count = baseMapper.selectCount(wrapper);
