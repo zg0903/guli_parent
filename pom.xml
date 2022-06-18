@@ -9,6 +9,7 @@
     <modules>
         <module>service</module>
         <module>common</module>
+        <module>service/service_msm</module>
     </modules>
     <name>guli_parent</name>
     <description>guli_parent</description>
