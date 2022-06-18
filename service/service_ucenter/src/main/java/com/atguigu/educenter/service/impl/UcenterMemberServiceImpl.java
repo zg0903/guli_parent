@@ -1,5 +1,6 @@
 package com.atguigu.educenter.service.impl;
 
+import com.atguigu.commonutils.JwtUtils;
 import com.atguigu.educenter.entity.UcenterMember;
 import com.atguigu.educenter.mapper.UcenterMemberMapper;
 import com.atguigu.educenter.service.UcenterMemberService;
@@ -8,6 +9,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.util.StringUtils;
 import org.springframework.stereotype.Service;
+import com.atguigu.commonutils.MD5;
 
 /**
  * <p>
@@ -35,7 +37,7 @@ public class UcenterMemberServiceImpl extends ServiceImpl<UcenterMemberMapper, U
             throw new GuliException(20001, "登陆失败");
         }
 
-        if (!password.equals(mobileMember.getPassword())) {
+        if (!MD5.encrypt(password).equals(mobileMember.getPassword())) {
             throw new GuliException(20001, "登陆失败");
         }
 
@@ -44,6 +46,9 @@ public class UcenterMemberServiceImpl extends ServiceImpl<UcenterMemberMapper, U
         }
 
 
-        return null;
+        //登录成功
+        //生成token字符串，使用jwt工具类
+        String jwtToken = JwtUtils.getJwtToken(mobileMember.getId(), mobileMember.getNickname());
+        return jwtToken;
     }
 }
