@@ -34,22 +34,22 @@ public class UcenterMemberServiceImpl extends ServiceImpl<UcenterMemberMapper, U
         String mobile = member.getMobile();
         String password = member.getPassword();
         if (StringUtils.isEmpty(mobile) || StringUtils.isEmpty(password)) {
-            throw new GuliException(20001, "登陆失败");
+            throw new GuliException(20001, "登陆失败,手机号为空");
         }
 //        判断手机号是否正确
         QueryWrapper<UcenterMember> wrapper = new QueryWrapper<>();
         wrapper.eq("mobile", mobile);
         UcenterMember mobileMember = baseMapper.selectOne(wrapper);
         if (mobileMember == null) {
-            throw new GuliException(20001, "登陆失败");
+            throw new GuliException(20001, "登陆失败,账户不存在");
         }
 
         if (!MD5.encrypt(password).equals(mobileMember.getPassword())) {
-            throw new GuliException(20001, "登陆失败");
+            throw new GuliException(20001, "登陆失败,密码不正确");
         }
 
         if (mobileMember.getIsdisabled()) {
-            throw new GuliException(20001, "登陆失败");
+            throw new GuliException(20001, "登陆失败,账户禁用");
         }
 
 
@@ -84,7 +84,7 @@ public class UcenterMemberServiceImpl extends ServiceImpl<UcenterMemberMapper, U
         UcenterMember ucenterMember = new UcenterMember();
         ucenterMember.setMobile(mobile);
         ucenterMember.setNickname(nickname);
-        ucenterMember.setNickname(MD5.encrypt(password));
+        ucenterMember.setPassword(MD5.encrypt(password));
         ucenterMember.setIsdisabled(false);
         ucenterMember.setAvatar("https://img2.baidu.com/it/u=1477190694,2536653770&fm=253&fmt=auto&app=138&f=JPEG?w=804&h=500");
         baseMapper.insert(ucenterMember);
