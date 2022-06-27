@@ -15,16 +15,16 @@ import org.springframework.stereotype.Component;
 @Component
 public class ConstantWxUtils implements InitializingBean {
 
-    @Value("${wx.open.app_id}")
+    @Value("wxed9954c01bb89b47")
     private String appId;
 
 
-    @Value("${wx.open.app_secret}")
+    @Value("a7482517235173ddb4083788de60b90e")
     private String appScret;
 
-
-    @Value("${wx.open.redirect_url}")
+    @Value("http://guli.shop/api/ucenter/wx/callback")
     private String redirectUrl;
+
 
 
     public static String WX_OPEN_APP_ID;
