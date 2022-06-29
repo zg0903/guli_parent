@@ -39,6 +39,12 @@ import org.springframework.web.cors.reactive.CorsWebFilter;
 import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
 import org.springframework.web.util.pattern.PathPatternParser;
 
+/**
+ * description:
+ *
+ * @author wangpeng
+ * @date 2019/01/02
+ */
 @Configuration
 public class CorsConfig {
     @Bean
