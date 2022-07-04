@@ -22,10 +22,13 @@ public class MymetaObjectHandler implements MetaObjectHandler {
     public void insertFill(MetaObject metaObject) {
         this.setFieldValByName("createtime", new Date(), metaObject);
         this.setFieldValByName("updatetime", new Date(), metaObject);
+        this.setFieldValByName("gmtcreate", new Date(), metaObject);
+        this.setFieldValByName("gmtmodified", new Date(), metaObject);
     }
 
     @Override
     public void updateFill(MetaObject metaObject) {
         this.setFieldValByName("updatetime", new Date(), metaObject);
+        this.setFieldValByName("gmtmodified", new Date(), metaObject);
     }
 }
